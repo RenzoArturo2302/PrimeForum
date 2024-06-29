@@ -1,0 +1,86 @@
+/* Fonts que quizá usaré */
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+/* Reset total */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", sans-serif;
+  /* border: 1px solid red; */
+  transition: background-color 0.5s ease;
+}
+
+/* Variables  */
+:root {
+  --fondo: #dadada;
+  --sidebar: #212121;
+  --buttons-color: #0f9ca4;
+  --buttons-color-hover: #02b6c0;
+  --buttons-font-color: #222831;
+  --font: #f2f2f2;
+  --font-menu: #f2f2f2;
+  --font-linea: #747474;
+  --switch-base: #dadada;
+  --switch-circulo: #393e46;
+  --menu-navigation-bar: #505864;
+  --menu-navigation-bar-hover: #656e7e;
+  --pages-font: #393e46;
+  --fondo-post: #212121;
+}
+
+/* Elemento que encierra todo, se encuentra en el body */
+/* 
+#root {
+} */
+
+.App {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: var(--fondo);
+}
+
+main {
+  background-color: red;
+}
+
+[data-theme="darkmode"] {
+  --fondo: #212121;
+  --sidebar: #000000;
+  --buttons-color: #4410aa;
+  --buttons-color-hover: #560aef;
+  --buttons-font-color: #dde5f0;
+  --font: #dadada;
+  --font-menu: #dadada;
+  --font-linea: #dadada;
+  --switch-base: #2c2a2f;
+  --switch-circulo: #dadada;
+  --menu-navigation-bar: #e64e7c;
+  --menu-navigation-bar-hover: #e27697;
+  --pages-font: #ececec;
+  --fondo-post: #2f2f2f;
+}
+
+.page {
+  margin-left: 250px;
+
+  transition: margin-left 0.5s ease, color 0.5s ease;
+  color: var(--pages-font);
+  padding: 50px;
+}
+
+.page.min-page {
+  margin-left: 80px;
+}
+
+@media (max-width: 650px) {
+  .page.min-page {
+    margin-left: 0;
+  }
+
+  .page {
+    padding: 20px;
+    margin-left: 0;
+  }
+}

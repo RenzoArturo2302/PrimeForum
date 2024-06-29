@@ -1,0 +1,379 @@
+.menu {
+  background-color: var(--buttons-color);
+  color: var(--buttons-font-color);
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  right: 15px;
+  top: 15px;
+  z-index: 100;
+}
+
+.menu:hover {
+  background-color: var(--buttons-color-hover);
+}
+.menu div {
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  overflow: hidden;
+  padding: 20px 15px;
+  background-color: var(--sidebar);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* margin-right: 10px; */
+  transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+.mini-sidebar {
+  width: 80px;
+}
+
+/* Logo de la página */
+.sidebar .logo {
+  display: flex;
+  /* border: 2px solid black; */
+  overflow: hidden;
+  width: 100%;
+  height: 3.5rem;
+  align-items: center;
+  font-weight: 700;
+  color: var(--font);
+
+  /* Para que parezca que se puede clickear */
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+/* Según la documentación de ion-icon, así se puede estilizar. No se le puede agregar clases */
+.sidebar .logo ion-icon {
+  min-width: 3rem;
+  font-size: 3rem;
+}
+
+.sidebar span {
+  margin-left: 0.15rem;
+  text-align: center;
+  font-size: 1.45rem;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+
+.sidebar span.dissapear {
+  opacity: 0;
+  width: 0;
+  margin: 0rem;
+}
+
+.sidebar .button-sidebar {
+  /* Tamaño y ubicación */
+  overflow: hidden;
+  width: 100%;
+  height: 2.75rem;
+
+  /* Disposición */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  /* Otros */
+  border-radius: 10px;
+  background-color: var(--buttons-color);
+  color: var(--buttons-font-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.sidebar .button-sidebar:hover {
+  background-color: var(--buttons-color-hover);
+}
+
+.sidebar .button-sidebar ion-icon {
+  min-width: 20px;
+  font-size: 1.5rem;
+}
+
+.sidebar .button-sidebar span {
+  font-size: 1.1rem;
+}
+
+.sidebar .Navbar {
+  height: 100%;
+  overflow-y: 50px;
+  overflow-x: hidden;
+}
+
+.sidebar .Navbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar .Navbar::-webkit-scrollbar-thumb {
+  background-color: var(--menu-navigation-bar);
+  border-radius: 5px;
+}
+
+.sidebar .Navbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--menu-navigation-bar-hover);
+}
+
+.sidebar .Navbar ul li {
+  list-style: none;
+  display: flex;
+  margin-bottom: 1.25rem;
+  justify-content: space-between;
+}
+
+.sidebar .Navbar ul li a {
+  text-decoration: none;
+
+  display: flex;
+  width: 100%;
+  height: 2.85rem;
+  align-items: center;
+  border-radius: 10px;
+  /* background-color: var(--sidebar); */
+  color: var(--font-menu);
+  cursor: pointer;
+}
+
+.sidebar .Navbar ul li a ion-icon {
+  min-width: 50px;
+  font-size: 20px;
+}
+
+.sidebar .Navbar ul li a span {
+  font-size: 1.1rem;
+}
+
+.sidebar .Navbar ul li a:hover {
+  background-color: var(--buttons-color-hover);
+}
+
+.sidebar .sidebar-linea {
+  width: 100%;
+  height: 1px;
+  background-color: var(--font-linea);
+  margin-top: 15px;
+}
+
+.sidebar .dark-mode-sidebar {
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.sidebar .dark-mode-sidebar .info {
+  /* border: 1px solid red; */
+  width: 160px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--font-menu);
+}
+
+.sidebar .dark-mode-sidebar .info span {
+  font-size: 1.1rem;
+}
+
+.sidebar .dark-mode-sidebar .info ion-icon {
+  min-width: 50px;
+  font-size: 20px;
+}
+
+.sidebar .dark-mode-sidebar .switch-sidebar {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.sidebar .dark-mode-sidebar .switch-sidebar .base {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 35px;
+  height: 20px;
+  background-color: var(--switch-base);
+  border-radius: 50px;
+}
+
+.sidebar .dark-mode-sidebar .switch-sidebar .circle {
+  position: absolute;
+  width: 18px;
+  height: 90%;
+  background-color: var(--switch-circulo);
+  border-radius: 50%;
+  left: 2px;
+  transition: left 0.7s ease;
+}
+.sidebar .dark-mode-sidebar .switch-sidebar .circle.prendido {
+  left: 15px;
+}
+
+.sidebar .usuario {
+  width: 100%;
+  display: flex;
+}
+
+.sidebar .usuario img {
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+  border-radius: 10px;
+}
+
+.sidebar .usuario .info-usuario {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--font);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebar .usuario .info-usuario .nombre-email {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebar .usuario .info-usuario .nombre-email span {
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar .usuario .info-usuario .nombre-email .nombre {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 2px;
+}
+
+.sidebar .usuario .info-usuario .nombre-email .config {
+  font-size: 13px;
+  cursor: pointer;
+  /* border: 1px red solid; */
+  text-decoration: underline;
+  border-radius: 5px;
+  padding: 2px;
+  /* border: 1px red solid; */
+}
+
+.sidebar .usuario .info-usuario .nombre-email .config:hover {
+  color: var(--buttons-color-hover);
+}
+
+.sidebar .usuario .info-usuario ion-icon {
+  padding: 4px;
+  min-width: 35px;
+  font-size: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar .usuario .info-usuario ion-icon:hover {
+  background-color: var(--buttons-color-hover);
+}
+
+.sidebar .login-register {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--font-menu);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+/* Después de seleccionar elemento */
+.sidebar a:any-link {
+  color: var(--font);
+}
+
+.sidebar .login-register span {
+  font-size: 1.1rem;
+}
+
+.sidebar .login-register ion-icon {
+  min-width: 50px;
+  font-size: 25px;
+}
+
+.sidebar .login-register .login,
+.sidebar .login-register .register {
+  margin: 5px 0;
+  cursor: pointer;
+  display: flex;
+  height: 2.85rem;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.sidebar .login-register .login:hover,
+.sidebar .login-register .register:hover {
+  background-color: var(--buttons-color-hover);
+}
+
+@media (max-height: 660px) {
+  .sidebar .logo {
+    margin-bottom: 5px;
+  }
+
+  .sidebar .dark-mode-sidebar {
+    margin-bottom: 3px;
+  }
+}
+
+@media (max-width: 650px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
+    transition: width 0.5s ease, left 0.5s ease;
+  }
+
+  .sidebar.mini-sidebar {
+    transition: left 0.3s ease, width 0.5s ease;
+    left: -80px;
+  }
+
+  .sidebar.max-barra-lateral {
+    left: 0;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .menu div.change-display {
+    display: none;
+  }
+}

@@ -1,0 +1,110 @@
+import firebase from "firebase/app";
+import "firebase/database";
+import { useState, useEffect } from "react";
+
+// Configura tu Firebase
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_AUTH_DOMAIN",
+  databaseURL: "TU_DATABASE_URL",
+  projectId: "TU_PROJECT_ID",
+  storageBucket: "TU_STORAGE_BUCKET",
+  messagingSenderId: "TU_MESSAGING_SENDER_ID",
+  appId: "TU_APP_ID",
+};
+
+// Inicializa Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+// Referencia a la base de datos
+const database = firebase.database();
+
+// Función para iterar sobre los documentos y buscar por título
+function filtrarDocumentosPorTitulo(usuarios, tituloBuscado) {
+  const documentosEncontrados = [];
+
+  // Itera sobre cada usuario
+  Object.keys(usuarios).forEach((userID) => {
+    const documentos = usuarios[userID].documentos;
+
+    if (documentos) {
+      // Itera sobre los documentos de cada usuario
+      Object.keys(documentos).forEach((documentoID) => {
+        const documento = documentos[documentoID];
+        // Realiza la búsqueda por título (ignorando mayúsculas y minúsculas)
+        if (
+          documento.title.toLowerCase().includes(tituloBuscado.toLowerCase())
+        ) {
+          documentosEncontrados.push({
+            userID: userID,
+            documentID: documentoID,
+            detalles: documento,
+          });
+        }
+      });
+    }
+  });
+
+  return documentosEncontrados;
+}
+
+// Función para realizar la búsqueda por título en tiempo real
+function buscarPorTitulo(tituloBuscado, callback) {
+  const usuariosRef = database.ref("usuarios");
+
+  usuariosRef.on("value", (snapshot) => {
+    const usuarios = snapshot.val(); // Obtiene todos los usuarios
+    const documentosEncontrados = filtrarDocumentosPorTitulo(
+      usuarios,
+      tituloBuscado
+    );
+
+    // Llama al callback con los resultados encontrados
+    callback(documentosEncontrados);
+  });
+}
+
+// Componente React que utiliza la función de búsqueda en tiempo real
+function BuscadorDocumentos() {
+  const [busqueda, setBusqueda] = useState("");
+  const [resultados, setResultados] = useState([]);
+
+  useEffect(() => {
+    if (busqueda.trim() !== "") {
+      buscarPorTitulo(busqueda, (documentosEncontrados) => {
+        setResultados(documentosEncontrados);
+      });
+    } else {
+      setResultados([]);
+    }
+  }, [busqueda]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Buscar por título..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
+      <ul>
+        {resultados.map((documento, index) => (
+          <li key={index}>
+            <h3>{documento.detalles.title}</h3>
+            <p>{documento.detalles.content}</p>
+            <p>
+              <strong>UserID:</strong> {documento.userID}
+            </p>
+            <p>
+              <strong>DocumentID:</strong> {documento.documentID}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default BuscadorDocumentos;
