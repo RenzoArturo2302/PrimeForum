@@ -122,62 +122,57 @@ const EditPostView = () => {
       return;
     }
     try {
-      const result = await Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¡No serás capaz de revertir los cambios!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Confirm",
+      const loading = Swal.fire({
+        title: "Editando post",
+        text: "Espere por favor...",
+        icon: "info",
+        showConfirmButton: false,
       });
+      setButtonState(true);
+      let imageURL = "";
+      const isAlreadyFirebase = isFirebaseStorageUrl(image);
+      console.log(isAlreadyFirebase);
+      if (isAlreadyFirebase) {
+        imageURL = image;
+      } else {
+        imageURL = await storageServiceImg(image, "imagePost");
+      }
 
-      if (result.isConfirmed) {
-        setButtonState(true);
-        let imageURL = "";
-        const isAlreadyFirebase = isFirebaseStorageUrl(image);
-        console.log(isAlreadyFirebase);
-        if (isAlreadyFirebase) {
-          imageURL = image;
-        } else {
-          imageURL = await storageServiceImg(image, "imagePost");
-        }
-
-        if (imageURL === "") {
-          toast.dismiss("loading-toast");
-          setButtonState(false);
-          Swal.fire({
-            icon: "error",
-            title: "¡Error!",
-            text: "Ha sucedido un error a la hora de subir la imagen",
-            timer: 1200,
-            showConfirmButton: false,
-          });
-
-          return;
-        }
-
-        let newData = {
-          ...dataPost,
-          src: imageURL,
-          date: new Date().toISOString(),
-        };
-
-        await editarDocumentoPorID(currentUser.uid, id, newData);
-        await Swal.fire({
-          title: "¡Éxito!",
-          text: "¡Tu post ha sido editado!",
-          icon: "success",
+      if (imageURL === "") {
+        toast.dismiss("loading-toast");
+        setButtonState(false);
+        Swal.fire({
+          icon: "error",
+          title: "¡Error!",
+          text: "Ha sucedido un error a la hora de subir la imagen",
+          timer: 1200,
+          showConfirmButton: false,
         });
 
-        setButtonState(false);
-        navigate("/myPosts");
+        return;
       }
+
+      let newData = {
+        ...dataPost,
+        src: imageURL,
+        date: new Date().toISOString(),
+      };
+
+      await editarDocumentoPorID(currentUser.uid, id, newData);
+      loading.close();
+      await Swal.fire({
+        title: "¡Éxito!",
+        text: "¡Tu post ha sido editado!",
+        icon: "success",
+      });
+
+      setButtonState(false);
+      navigate("/myPosts");
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "¡Error!",
-        text: "Error al crear el post",
+        text: "Error al editar el post",
       });
       return;
     }

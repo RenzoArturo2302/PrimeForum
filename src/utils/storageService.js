@@ -16,7 +16,7 @@ const storageServiceImg = async (image, dirName) => {
 
     return urlImg;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

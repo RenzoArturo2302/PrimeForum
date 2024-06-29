@@ -157,6 +157,12 @@ button:disabled {
   margin-top: 20px;
 }
 
+.home-view .form-view button {
+  /* border: 1px solid red; */
+  /* display: block; */
+  align-items: center;
+}
+
 .form-title *,
 .form-image *,
 .form-category *,

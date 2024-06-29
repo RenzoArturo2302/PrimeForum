@@ -114,42 +114,38 @@ const CreatePostView = () => {
     }
 
     try {
-      const result = await Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¡Podrás editar el post después!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Confirm",
+      const loading = Swal.fire({
+        title: "Creando post",
+        text: "Espere por favor...",
+        icon: "info",
+        showConfirmButton: false,
       });
-
-      if (result.isConfirmed) {
-        setButtonState(true);
-        const imageURL = await storageServiceImg(image, "imagePost");
-        if (imageURL === "") {
-          setButtonState(false);
-          Swal.fire({
-            icon: "error",
-            title: "¡Error!",
-            text: "Error al subir la imagen",
-          });
-          return;
-        }
-        let newPost = {
-          ...dataPost,
-          src: imageURL,
-          date: new Date().toISOString(),
-        };
-        await crearDocumento(newPost, currentUser.uid);
-        await Swal.fire({
-          title: "¡Éxito!",
-          text: "¡Tu post ha sido creado!",
-          icon: "success",
-        });
+      setButtonState(true);
+      const imageURL = await storageServiceImg(image, "imagePost");
+      if (imageURL === "") {
         setButtonState(false);
-        navigate("/myPosts");
+        Swal.fire({
+          icon: "error",
+          title: "¡Error!",
+          text: "Error al subir la imagen",
+        });
+        return;
       }
+      let newPost = {
+        ...dataPost,
+        src: imageURL,
+        date: new Date().toISOString(),
+      };
+      await crearDocumento(newPost, currentUser.uid);
+
+      loading.close();
+      await Swal.fire({
+        title: "¡Éxito!",
+        text: "¡Tu post ha sido creado!",
+        icon: "success",
+      });
+      setButtonState(false);
+      navigate("/myPosts");
     } catch (error) {
       Swal.fire({
         icon: "error",

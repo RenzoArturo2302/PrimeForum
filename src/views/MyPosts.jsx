@@ -44,7 +44,7 @@ const MyPosts = () => {
       eliminarDocumentoPorID(currentUser.uid, id);
       await Swal.fire({
         title: "¡Éxito!",
-        text: "¡Tu post ha sido editado!",
+        text: "¡Tu post ha sido eliminado!",
         icon: "success",
       });
       getPostUser();
