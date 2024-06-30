@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <SearchView />,
       },
       {
-        path: "/categories",
+        path: "/categories/:category",
         element: <CategoriesView />,
       },
       {

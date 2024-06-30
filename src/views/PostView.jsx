@@ -11,6 +11,7 @@ import { obtenerDocumentoPorID } from "../utils/realTimeDatabaseFunctions";
 import parse from "html-react-parser";
 //
 import { convertDateToLocal } from "../utils/utils";
+import { Link } from "react-router-dom";
 
 const PostView = () => {
   const { sidebarState } = useContext(SidebarUnfolded);
@@ -41,9 +42,11 @@ const PostView = () => {
         {!loading ? (
           <div className="post-view">
             <h1>{dataPost.title}</h1>
-
-            <h2>{dataPost.category}</h2>
-            <h3>{convertDateToLocal(dataPost.date)}</h3>
+            <div className="category-post-view">
+              <h2>
+                <Link>{dataPost.category}</Link>
+              </h2>
+            </div>
 
             <div className="img-post">
               <img
@@ -51,6 +54,9 @@ const PostView = () => {
                 style={{ maxWidth: "800px", height: "auto" }}
               />
             </div>
+            <h3 className="date-post-view">
+              {convertDateToLocal(dataPost.date)}
+            </h3>
             <div className="content-post-view">{parse(dataPost.content)}</div>
           </div>
         ) : (

@@ -55,6 +55,40 @@ const obtenerTodosLosDocumentos = async () => {
   }
 };
 
+const obtenerTodosLosDocumentosPorCategoria = async (categoria) => {
+  try {
+    const documents = [];
+    const userIDs = await obtenerUserIDs();
+
+    if (Object.keys(userIDs).length === 0) {
+      // Esta vacío
+      return documents;
+    }
+
+    Object.keys(userIDs).forEach((userID) => {
+      const userDocuments = userIDs[userID].documentos;
+
+      if (userDocuments) {
+        Object.keys(userDocuments).forEach((documentID) => {
+          const doc = userDocuments[documentID];
+
+          if (doc.category === categoria) {
+            documents.push({
+              ...userDocuments[documentID],
+              uid: userID,
+              id: documentID,
+            });
+          }
+        });
+      }
+    });
+
+    return documents;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const obtenerDocumentoPorUser = async (currentUserID) => {
   try {
     const userDocumentRef = ref(
@@ -123,4 +157,5 @@ export {
   obtenerDocumentoPorID,
   editarDocumentoPorID,
   eliminarDocumentoPorID,
+  obtenerTodosLosDocumentosPorCategoria,
 };

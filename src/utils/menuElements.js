@@ -3,30 +3,30 @@
 const noAuth = [
   { id: 1, iconName: "home-outline", menuElementName: "Inicio", link: "/" },
 
-  {
-    id: 3,
-    iconName: "search-outline",
-    menuElementName: "Buscar",
-    link: "/search",
-  },
-  {
-    id: 4,
-    iconName: "list-outline",
-    menuElementName: "Categorías",
-    link: "/categories",
-  },
-  {
-    id: 5,
-    iconName: "people-outline",
-    menuElementName: "Sobre Nosotros",
-    link: "/about-us",
-  },
-  {
-    id: 6,
-    iconName: "information-outline",
-    menuElementName: "Ayuda",
-    link: "/help",
-  },
+  // {
+  //   id: 3,
+  //   iconName: "search-outline",
+  //   menuElementName: "Buscar",
+  //   link: "/search",
+  // },
+  // {
+  //   id: 4,
+  //   iconName: "list-outline",
+  //   menuElementName: "Categorías",
+  //   link: "/categories",
+  // },
+  // {
+  //   id: 5,
+  //   iconName: "people-outline",
+  //   menuElementName: "Sobre Nosotros",
+  //   link: "/about-us",
+  // },
+  // {
+  //   id: 6,
+  //   iconName: "information-outline",
+  //   menuElementName: "Ayuda",
+  //   link: "/help",
+  // },
 ];
 
 const yesAuth = [
@@ -37,30 +37,30 @@ const yesAuth = [
     menuElementName: "Mis publicaciones",
     link: "/myPosts",
   },
-  {
-    id: 3,
-    iconName: "search-outline",
-    menuElementName: "Buscar",
-    link: "/search",
-  },
-  {
-    id: 4,
-    iconName: "list-outline",
-    menuElementName: "Categorías",
-    link: "/categories",
-  },
-  {
-    id: 5,
-    iconName: "people-outline",
-    menuElementName: "Sobre Nosotros",
-    link: "/about-us",
-  },
-  {
-    id: 6,
-    iconName: "information-outline",
-    menuElementName: "Ayuda",
-    link: "/help",
-  },
+  // {
+  //   id: 3,
+  //   iconName: "search-outline",
+  //   menuElementName: "Buscar",
+  //   link: "/search",
+  // },
+  // {
+  //   id: 4,
+  //   iconName: "list-outline",
+  //   menuElementName: "Categorías",
+  //   link: "/categories",
+  // },
+  // {
+  //   id: 5,
+  //   iconName: "people-outline",
+  //   menuElementName: "Sobre Nosotros",
+  //   link: "/about-us",
+  // },
+  // {
+  //   id: 6,
+  //   iconName: "information-outline",
+  //   menuElementName: "Ayuda",
+  //   link: "/help",
+  // },
 ];
 
 const menuList = (isAuth) => {

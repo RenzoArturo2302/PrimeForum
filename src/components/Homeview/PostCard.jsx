@@ -15,7 +15,11 @@ const PostCard = ({ dataPost, loading }) => {
                   <div className="fondo"></div>
                   <div className="metadatos">
                     <div className="category-date">
-                      <h2 className="category">{obj.category}</h2>
+                      <h2 className="category">
+                        <Link to={`/categories/${obj.category}`}>
+                          {obj.category}
+                        </Link>
+                      </h2>
                       <h3 className="date">{convertDateToLocal(obj.date)}</h3>
                     </div>
 
