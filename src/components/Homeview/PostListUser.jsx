@@ -18,7 +18,11 @@ const PostListUser = ({ postsUser, loading, handleEliminar, currentUser }) => {
                   <div className="fondo"></div>
                   <div className="title-category-date">
                     <div className="category-date">
-                      <h2 className="category">{obj.category}</h2>
+                      <h2 className="category">
+                        <Link to={`/categories/${obj.category}`}>
+                          {obj.category}
+                        </Link>
+                      </h2>
                       <h3>{convertDateToLocal(obj.date)}</h3>
                     </div>
                     <h1 className="title">
