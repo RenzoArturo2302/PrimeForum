@@ -44,7 +44,9 @@ const PostView = () => {
             <h1>{dataPost.title}</h1>
             <div className="category-post-view">
               <h2>
-                <Link>{dataPost.category}</Link>
+                <Link to={`/categories/${dataPost.category}`}>
+                  {dataPost.category}
+                </Link>
               </h2>
             </div>
 
